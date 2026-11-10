@@ -1,0 +1,35 @@
+{
+  "name": "agent-cowork-platform",
+  "version": "0.1.0-dev.1",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=24.22.1 <25"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "npm run typecheck && vite build --config apps/web/vite.config.ts",
+    "start": "tsx apps/server/src/main.ts",
+    "dev": "node scripts/dev.mjs",
+    "test": "node scripts/test.mjs",
+    "test:browser": "tsx scripts/browser-smoke.ts",
+    "doctor": "tsx scripts/doctor.ts",
+    "package": "python3 scripts/package.py"
+  },
+  "dependencies": {
+    "@fastify/static": "10.1.10",
+    "fastify": "5.12.8",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.1",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "playwright": "1.65.0",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "vite": "8.3.7"
+  }
+}
