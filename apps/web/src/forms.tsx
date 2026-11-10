@@ -13,7 +13,7 @@ export function ProjectForm({ busy, mutate, done }: Common) {
   return <form onSubmit={submit}>
     <p className="form-intro">选择本地服务所在电脑上的 Git 仓库。工作台会检查目录和已提交的基准版本。</p>
     <Field label="项目名称"><input autoFocus value={name} onChange={(e) => setName(e.target.value)} required maxLength={120} placeholder="例如：客户管理系统" /></Field>
-    <Field label="仓库绝对路径" hint="Windows 示例：E:\gpt_project\my-project。云端服务需要填写其实际 Linux 路径。"><input value={path} onChange={(e) => setPath(e.target.value)} required placeholder="E:\gpt_project\my-project" autoComplete="off" spellCheck={false} /></Field>
+    <Field label="仓库绝对路径" hint="请输入运行本地服务的电脑上的 Git 仓库绝对路径，例如 C:\Projects\my-project。"><input value={path} onChange={(e) => setPath(e.target.value)} required placeholder="C:\Projects\my-project" autoComplete="off" spellCheck={false} /></Field>
     <div className="callout">项目须已有 Git 提交。工作台会保留你的未提交修改；开始写任务前需要先处理这些修改。</div>
     {actions(busy, '检查并添加项目')}
   </form>;

@@ -7,13 +7,12 @@
 ## 在 Windows 上启动
 
 1. 安装 **Node.js 24.22.1**（Node 24 LTS，包含 npm）和 Git，并重新打开 PowerShell。
-2. 将交付 ZIP 中的文件解压到 `E:\gpt_project\agent-cowork-platform`；该目录下应直接出现 `package.json`，无需再套一层同名目录。
+2. 克隆本仓库，或下载源码 ZIP 并解压到自行选择的目录。项目根目录中应包含 `package.json`。
 3. 双击目录内的 **`install.cmd`**。它会检查 Node/Git、安装依赖、构建、运行工具诊断并启动服务；出错时保留窗口供查看。该脚本需要 Node 和 Git 已安装，不会替你安装或替换系统软件。
 
-也可以在 PowerShell 手动执行：
+也可以在项目根目录打开 PowerShell，手动执行：
 
 ```powershell
-Set-Location -LiteralPath 'E:\gpt_project\agent-cowork-platform'
 npm.cmd ci
 npm.cmd run build
 npm.cmd run doctor
@@ -26,14 +25,14 @@ npm.cmd start
 
 ## 文件放在哪里
 
-- 源代码、项目文档、启动脚本：`E:\gpt_project\agent-cowork-platform`。
-- 默认运行数据：启动目录内的 `.local-data`，包含 SQLite、任务工作区、成果快照等；此目录已被 Git 忽略，交付包也不包含它。
+- 源代码、项目文档、启动脚本：自行选择的项目安装目录。
+- 默认运行数据：启动目录内的 `.local-data`，包含 SQLite、任务工作区、成果快照等；此目录已被 Git 忽略，源码包也不包含它。
 - 你交给 AI 处理的 Git 项目：由界面选择路径。要求已有提交并且工作区干净；工具不会覆盖未提交文件。
 
-运行数据不能位于被处理项目的目录内。若需要让工作台开发自身，先将数据目录设置到另一位置，再启动：
+运行数据不能位于被处理项目的目录内。可以通过环境变量将数据目录设置到 Windows 当前用户的应用数据目录，再启动：
 
 ```powershell
-$env:AGENT_COWORK_DATA_DIR = 'E:\gpt_project\agent-cowork-data'
+$env:AGENT_COWORK_DATA_DIR = Join-Path $env:LOCALAPPDATA 'AgentCowork'
 npm.cmd start
 ```
 
@@ -53,7 +52,7 @@ npm run doctor -- --json
 
 源码按 `apps/web`、`apps/server`、`packages/core`、`packages/protocol`、`packages/adapters` 和 `packages/workspace` 划分。故障恢复与状态限制由服务端验证，网页不直接控制原生工具。
 
-## 当前交付边界
+## 当前功能与限制
 
 - 可以添加本地 Git 项目、创建任务、保存角色与规则、查看待处理事项及事件，控制暂停派单。
 - 核心支持稳定请求去重、流程和工作区占用、停止待核实、固定成果复核及指定版本验收；这些执行流程通过注入测试运行时验证。

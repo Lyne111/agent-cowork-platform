@@ -13,7 +13,7 @@ Linux，Node.js 24.22.1，npm 11.9.0。原生工具详情及兼容性阻塞见 [
 | `npm run test:browser` | 通过 | 真实 Chromium、真实本地服务及临时 Git 项目，未注入模拟页面或伪造 API |
 | Codex 初始化 | 通过 | 在原生状态目录可写时，通过实际 stdio 传输完成 initialize/initialized；没有发起模型任务 |
 | Antigravity、Harness 真实执行 | 未执行 | 当前环境没有 `agy`、`dsh` 及对应已验证配置 |
-| Windows 本机验证 | 未执行 | 本会话不能访问用户的 E: 盘；CI 配置已提供，尚未在 GitHub 上运行 |
+| Windows 本机验证 | 未执行 | 尚未在 Windows 环境中实测；已提供 CI 配置，未确认其远端运行结果 |
 
 浏览器检查包含：添加带中文路径的 Git 项目、创建和修改规则版本、创建角色、两次独立创建内容相同的任务、保存讨论而不派单、未验证工具按钮禁用、暂停与刷新后的持久状态，以及桌面和窄屏布局。过程中修复了编辑表单的标签定位和未确认按钮状态；最终运行无未捕获的浏览器错误。
 
@@ -30,7 +30,7 @@ npm test
 npm run doctor
 ```
 
-浏览器检查额外需要 Chromium。可以安装 Playwright 管理的浏览器后执行 `npm run test:browser`，或通过 `CHROMIUM_PATH` 指向已有 Chromium。当前云环境使用 `/usr/bin/chromium`。浏览器脚本会创建并清理临时项目与数据库；截图写入被 Git 忽略的 `artifacts/`。
+浏览器检查额外需要 Chromium。可以安装 Playwright 管理的浏览器后执行 `npm run test:browser`，或通过 `CHROMIUM_PATH` 指向已有 Chromium。本次 Linux 验证环境使用 `/usr/bin/chromium`。浏览器脚本会创建并清理临时项目与数据库；截图写入被 Git 忽略的 `artifacts/`。
 
 ## 尚未完成的发布条件
 
